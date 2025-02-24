@@ -1,15 +1,17 @@
+"use client";
+
 import { format } from "date-fns";
 import { MapPin, Video, Calendar } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getDriveURlFromId } from "@/app/utils/url_utils";
+import { DriveImage } from "./DriveImage";
 
 export default function EventCard({ event }) {
   return (
     <Card>
       {event.image_url && (
         <div className="aspect-video relative overflow-hidden rounded-t-lg">
-          <img
-            src={getDriveURlFromId(event.image_url)}
+          <DriveImage
+            fileId={event.image_url}
             alt={event.title}
             className="object-cover w-full h-full"
           />
