@@ -13,9 +13,9 @@
   "aliases": {
     "components": "@/app/components",
     "utils": "@/app/utils",
-    "ui": "@/app/components/ui",
-    "lib": "@/app/lib",
-    "hooks": "@/app/hooks"
+    "ui": "@/app/core/components/ui",
+    "hooks": "@/app/core/hooks",
+    "core": "@/app/core"
   },
   "iconLibrary": "lucide"
 }

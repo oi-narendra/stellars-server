@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { Plus } from "lucide-react";
-import { Button } from "@/app/components/ui/button";
-import EventCard from "@/app/components/EventCard";
-import { CreateEventDrawer } from "@/app/components/events/CreateEventDrawer";
-import { useEvents } from "@/app/hooks/useEventMutation";
+import { Button } from "@/app/core/components/ui/button";
+import EventCard from "@/app/dashboard/events/components/EventCard";
+import { CreateEventDrawer } from "@/app/dashboard/events/components/CreateEventDrawer";
+import { useEvents } from "@/app/dashboard/events/hooks/useEvents";
 
 export default function EventsPage() {
   const [createDrawerOpen, setCreateDrawerOpen] = useState(false);

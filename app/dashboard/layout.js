@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "../store/authStore";
-import Sidebar from "../components/Sidebar";
+import { useAuthStore } from "@/app/core/store/authStore";
+import Sidebar from "@/app/dashboard/components/Sidebar";
 
 export default function DashboardLayout({ children }) {
   const { user, logout } = useAuthStore();
