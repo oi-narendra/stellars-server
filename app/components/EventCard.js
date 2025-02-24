@@ -1,19 +1,15 @@
 import { format } from "date-fns";
 import { MapPin, Video, Calendar } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getDriveURlFromId } from "@/app/utils/url_utils";
 
 export default function EventCard({ event }) {
   return (
     <Card>
-      {event.imageUrl && (
+      {event.image_url && (
         <div className="aspect-video relative overflow-hidden rounded-t-lg">
           <img
-            src={event.imageUrl}
+            src={getDriveURlFromId(event.image_url)}
             alt={event.title}
             className="object-cover w-full h-full"
           />
@@ -23,14 +19,14 @@ export default function EventCard({ event }) {
         <CardTitle>{event.title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="text-muted-foreground mb-4">{event.shortDescription}</p>
+        <p className="text-muted-foreground mb-4">{event.short_description}</p>
         <div className="space-y-2 text-sm text-muted-foreground">
           <div className="flex items-center space-x-2">
             <Calendar className="h-4 w-4" />
-            <span>{format(event.dateTime, "PPP 'at' p")}</span>
+            <span>{format(event.date_time, "PPP 'at' p")}</span>
           </div>
           <div className="flex items-center space-x-2">
-            {event.meetingLink ? (
+            {event.meeting_link ? (
               <>
                 <Video className="h-4 w-4" />
                 <span>Virtual Event</span>
@@ -38,7 +34,7 @@ export default function EventCard({ event }) {
             ) : (
               <>
                 <MapPin className="h-4 w-4" />
-                <span>{event.location}</span>
+                <span>{event.location.name}</span>
               </>
             )}
           </div>

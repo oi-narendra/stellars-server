@@ -1,28 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect } from "react";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import EventCard from "@/app/components/EventCard";
+import { useEventStore } from "@/app/store/eventStore";
 
 export default function EventsPage() {
-  // Temporary mock data - replace with actual data fetching
-  const [events] = useState([
-    {
-      id: 1,
-      title: "Tech Conference 2024",
-      shortDescription: "Annual technology conference featuring industry leaders",
-      imageUrl: "https://picsum.photos/800/400",
-      meetingLink: null,
-      dateTime: new Date("2024-06-15T09:00:00"),
-      location: "San Francisco Convention Center",
-      additionalData: {
-        capacity: 500,
-        ticketPrice: "$299",
-      },
-    },
-    // Add more mock events as needed
-  ]);
+  const { events, loading, error, fetchEvents } = useEventStore();
+
+  useEffect(() => {
+    fetchEvents();
+  }, [fetchEvents]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[200px]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-destructive/10 text-destructive p-4 rounded-lg">
+        Error loading events: {error}
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -33,11 +38,17 @@ export default function EventsPage() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {events.map((event) => (
-          <EventCard key={event.id} event={event} />
-        ))}
-      </div>
+      {events.length === 0 ? (
+        <div className="text-center text-muted-foreground py-12">
+          No events found. Create your first event!
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {events.map((event) => (
+            <EventCard key={event.id} event={event} />
+          ))}
+        </div>
+      )}
     </div>
   );
-} 
+}

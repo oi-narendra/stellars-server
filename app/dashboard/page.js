@@ -1,8 +1,16 @@
 "use client";
 
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useEventStore } from "@/app/store/eventStore";
 
 export default function Dashboard() {
+  const { events, fetchEvents } = useEventStore();
+
+  useEffect(() => {
+    fetchEvents();
+  }, [fetchEvents]);
+
   return (
     <div>
       <h1 className="text-3xl font-bold tracking-tight mb-6">Dashboard</h1>
@@ -12,7 +20,7 @@ export default function Dashboard() {
             <CardTitle className="text-lg">Total Events</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold text-primary">12</p>
+            <p className="text-3xl font-bold text-primary">{events.length}</p>
           </CardContent>
         </Card>
         {/* Add more dashboard cards/stats as needed */}
