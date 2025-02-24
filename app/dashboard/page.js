@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
 import { useEventStore } from "@/app/store/eventStore";
 
 export default function Dashboard() {

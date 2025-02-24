@@ -39,4 +39,4 @@ class GoogleService {
 }
 
 // Singleton instance
-export const googleService = new GoogleService(); 
+export const googleService = new GoogleService();

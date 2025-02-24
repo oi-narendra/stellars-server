@@ -6,10 +6,7 @@ export async function GET() {
     const token = await googleService.getAccessToken();
     return NextResponse.json({ token });
   } catch (error) {
-    console.error('Failed to get Google token:', error);
-    return NextResponse.json(
-      { error: 'Failed to get token' },
-      { status: 500 }
-    );
+    console.error("Failed to get Google token:", error);
+    return NextResponse.json({ error: "Failed to get token" }, { status: 500 });
   }
-} 
+}

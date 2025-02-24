@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/app/utils/utils";
 import { Label } from "./label";
 
 const Form = React.forwardRef(({ className, ...props }, ref) => {

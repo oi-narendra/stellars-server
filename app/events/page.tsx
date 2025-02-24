@@ -1,11 +1,11 @@
-"use client";
-
-import { useState } from "react";
-import { Plus } from "lucide-react";
-import { Button } from "@/app/components/ui/button";
-import EventCard from "@/app/components/EventCard";
-import { CreateEventDrawer } from "@/app/components/events/CreateEventDrawer";
-import { useEvents } from "@/app/hooks/useEventMutation";
+import { useState } from 'react';
+import { Plus } from 'lucide-react';
+import { Button } from '@/app/components/ui/button';
+import {
+  EventCard,
+  CreateEventDrawer,
+  useEvents,
+} from '@/modules/events';
 
 export default function EventsPage() {
   const [createDrawerOpen, setCreateDrawerOpen] = useState(false);
@@ -46,4 +46,4 @@ export default function EventsPage() {
       )}
     </div>
   );
-}
+} 

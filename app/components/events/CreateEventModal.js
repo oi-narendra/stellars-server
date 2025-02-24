@@ -5,10 +5,10 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "@/app/components/ui/dialog";
 import { EventForm } from "./EventForm";
 import { useEventMutation } from "@/app/hooks/useEventMutation";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/app/hooks/use-toast";
 
 export function CreateEventModal({ open, onOpenChange }) {
   const { toast } = useToast();

@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CalendarDays, LayoutDashboard, LogOut } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { Button } from "@/app/components/ui/button";
+import { Separator } from "@/app/components/ui/separator";
 
 const NavItem = ({ href, icon: Icon, children, isActive }) => (
   <Link href={href} className="no-underline">
