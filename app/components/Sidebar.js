@@ -3,18 +3,18 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CalendarDays, LayoutDashboard, LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 const NavItem = ({ href, icon: Icon, children, isActive }) => (
-  <Link
-    href={href}
-    className={`flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
-      isActive
-        ? "bg-blue-100 text-blue-900"
-        : "hover:bg-gray-100 text-gray-700 hover:text-gray-900"
-    }`}
-  >
-    <Icon size={20} />
-    <span>{children}</span>
+  <Link href={href} className="no-underline">
+    <Button
+      variant={isActive ? "secondary" : "ghost"}
+      className="w-full justify-start"
+    >
+      <Icon className="mr-2 h-4 w-4" />
+      {children}
+    </Button>
   </Link>
 );
 
@@ -29,8 +29,8 @@ export default function Sidebar({ user, onLogout }) {
   console.log("User", user);
 
   return (
-    <div className="flex flex-col h-full bg-white border-r border-gray-200 w-64">
-      <div className="p-4">
+    <div className="flex flex-col h-full bg-background border-r w-64">
+      <div className="p-6">
         <div className="flex items-center space-x-2 mb-6">
           <img
             src="/stellars-logo.png"
@@ -53,16 +53,21 @@ export default function Sidebar({ user, onLogout }) {
         </nav>
       </div>
 
-      <div className="mt-auto p-4 border-t border-gray-200">
-        <div className="flex flex-col space-y-3">
-          <div className="text-sm text-gray-700 truncate">{user.email}</div>
-          <button
+      <div className="mt-auto p-6">
+        <Separator className="mb-6" />
+        <div className="space-y-3">
+          <p className="text-sm text-muted-foreground truncate">
+            {user?.email}
+          </p>
+          <Button
+            variant="destructive"
+            size="sm"
+            className="w-full justify-start"
             onClick={onLogout}
-            className="flex items-center space-x-2 text-red-600 hover:text-red-700 transition-colors"
           >
-            <LogOut size={18} />
-            <span>Sign out</span>
-          </button>
+            <LogOut className="mr-2 h-4 w-4" />
+            Sign out
+          </Button>
         </div>
       </div>
     </div>

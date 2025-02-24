@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { Plus } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import EventCard from "@/app/components/EventCard";
 
 export default function EventsPage() {
@@ -25,10 +27,10 @@ export default function EventsPage() {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-semibold text-gray-900">Events</h1>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
-          Create Event
-        </button>
+        <h1 className="text-3xl font-bold tracking-tight">Events</h1>
+        <Button>
+          <Plus className="mr-2 h-4 w-4" /> Create Event
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
