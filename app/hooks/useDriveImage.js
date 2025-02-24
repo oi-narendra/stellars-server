@@ -6,7 +6,7 @@ import { getDriveImageUrl } from "../actions/driveActions";
 
 async function fetchDriveImage(fileId) {
   if (!fileId) return null;
-  
+
   const { token, error } = await getDriveImageUrl(fileId);
   if (error) throw new Error(error);
 
@@ -26,7 +26,11 @@ async function fetchDriveImage(fileId) {
 }
 
 export function useDriveImage(fileId) {
-  const { data: imageUrl, isLoading, error } = useQuery({
+  const {
+    data: imageUrl,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["driveImage", fileId],
     queryFn: () => fetchDriveImage(fileId),
     enabled: !!fileId,

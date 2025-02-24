@@ -1,42 +1,37 @@
 "use client";
 
-import { useEffect } from "react";
+import { useState } from "react";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import EventCard from "@/app/components/EventCard";
-import { useEventStore } from "@/app/store/eventStore";
+import { CreateEventModal } from "@/app/components/events/CreateEventModal";
+import { useEvents } from "@/app/hooks/useEventMutation";
 
 export default function EventsPage() {
-  const { events, loading, error, fetchEvents } = useEventStore();
+  const [createModalOpen, setCreateModalOpen] = useState(false);
+  const { data: events, isLoading, error } = useEvents();
 
-  useEffect(() => {
-    fetchEvents();
-  }, [fetchEvents]);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[200px]">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-      </div>
-    );
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return (
-      <div className="bg-destructive/10 text-destructive p-4 rounded-lg">
-        Error loading events: {error}
-      </div>
-    );
+    return <div>Error: {error.message}</div>;
   }
 
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold tracking-tight">Events</h1>
-        <Button>
+        <Button onClick={() => setCreateModalOpen(true)}>
           <Plus className="mr-2 h-4 w-4" /> Create Event
         </Button>
       </div>
+
+      <CreateEventModal
+        open={createModalOpen}
+        onOpenChange={setCreateModalOpen}
+      />
 
       {events.length === 0 ? (
         <div className="text-center text-muted-foreground py-12">
