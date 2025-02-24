@@ -3,12 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { eventSchema } from "@/app/lib/schemas/eventSchema";
-import {
-  Form,
-  FormField,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormField, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -107,8 +102,13 @@ export function EventForm({ onSubmit, initialData }) {
       </FormField>
 
       <FormField>
-        <FormLabel>Location Address</FormLabel>
-        <Input {...form.register("location.address")} />
+        <FormLabel>Location Latitude </FormLabel>
+        <Input {...form.register("location.latitude")} />
+      </FormField>
+
+      <FormField>
+        <FormLabel>Location Longitude</FormLabel>
+        <Input {...form.register("location.longitude")} />
       </FormField>
 
       <FormField>

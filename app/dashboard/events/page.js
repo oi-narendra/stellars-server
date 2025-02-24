@@ -4,11 +4,11 @@ import { useState } from "react";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import EventCard from "@/app/components/EventCard";
-import { CreateEventModal } from "@/app/components/events/CreateEventModal";
+import { CreateEventDrawer } from "@/app/components/events/CreateEventDrawer";
 import { useEvents } from "@/app/hooks/useEventMutation";
 
 export default function EventsPage() {
-  const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [createDrawerOpen, setCreateDrawerOpen] = useState(false);
   const { data: events, isLoading, error } = useEvents();
 
   if (isLoading) {
@@ -23,14 +23,14 @@ export default function EventsPage() {
     <div>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold tracking-tight">Events</h1>
-        <Button onClick={() => setCreateModalOpen(true)}>
+        <Button onClick={() => setCreateDrawerOpen(true)}>
           <Plus className="mr-2 h-4 w-4" /> Create Event
         </Button>
       </div>
 
-      <CreateEventModal
-        open={createModalOpen}
-        onOpenChange={setCreateModalOpen}
+      <CreateEventDrawer
+        open={createDrawerOpen}
+        onOpenChange={setCreateDrawerOpen}
       />
 
       {events.length === 0 ? (
